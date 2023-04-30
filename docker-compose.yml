@@ -1,0 +1,43 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:8.0.33
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'root'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      # <Port exposed> : <MySQL Port running inside container>
+      - '3306:3306'
+
+    volumes:
+      - my-db:/var/lib/mysql
+
+    networks:
+      - mysql
+    
+
+
+  nestjs:
+    image: nestjs
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - mysql
+
+volumes:
+  my-db:
+
+
+networks:
+  mysql:
+    driver: bridge
