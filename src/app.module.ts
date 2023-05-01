@@ -9,13 +9,14 @@ import { User } from './users/users.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '127.0.0.1',
+      host: 'host.docker.internal',
       port: 3306,
       username: 'user',
       password: 'root',
       database: 'db',
       entities: [User],
-      synchronize: false,
+      synchronize: true,
+  
     }),
     UsersModule,
   ],

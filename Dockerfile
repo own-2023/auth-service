@@ -1,5 +1,5 @@
 # Building layer
-FROM node:20-alpine as development
+FROM node:20-alpine3.17 as development
 
 # Optional NPM automation (auth) token build argument
 # ARG NPM_TOKEN
@@ -23,7 +23,7 @@ COPY src/ src/
 RUN npm run build
 
 # Runtime (production) layer
-FROM node:20-alpine as production
+FROM node:20-alpine3.17 as production
 
 # Optional NPM automation (auth) token build argument
 # ARG NPM_TOKEN
@@ -46,4 +46,4 @@ COPY --from=development /app/dist/ ./dist/
 EXPOSE 3000
 
 # Start application
-CMD [ "node", "dist/main.js" ]
+CMD ["npm", "run", "start:prod"]
