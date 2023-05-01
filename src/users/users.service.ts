@@ -21,9 +21,13 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
+  signUp(user: User) {
+    this.usersRepository.save([user]);
+  }
 
-  findOneByUsernameAndPassword(username: string, password: string){
-    return this.usersRepository.findOneBy({username, password});
+
+  findOneByUsernameAndPassword(username: string, password: string) {
+    return this.usersRepository.findOneBy({ username, password });
   }
 
   async remove(id: number): Promise<void> {
