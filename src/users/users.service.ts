@@ -21,8 +21,8 @@ export class UsersService {
     return this.usersRepository.findOneBy({ id });
   }
 
-  signUp(user: User) {
-    this.usersRepository.save([user]);
+  async signUp(user: User) {
+    await this.usersRepository.save([user]);
   }
 
 
