@@ -15,17 +15,7 @@ services:
     volumes:
       - my-db:/var/lib/mysql
 
-    
 
-
-  nestjs:
-    image: nestjs
-    env_file:
-      - .env
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mysql
 
 volumes:
   my-db:
