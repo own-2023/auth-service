@@ -14,13 +14,7 @@ export async function run() {
         workflowId: 'example-id'
     });
 
-    const worker = await Worker.create({
-        taskQueue: 'exampleQueue',
-        workflowsPath: require.resolve('./workflows'),
-        activities
-    })
-
-    await worker.run();
+   
 
     await client.connection.close();
 }
