@@ -5,9 +5,9 @@ export const userWorkerProvider = [
     {
         provide: 'USER_WORKER',
         inject: [],
-        userFactory: async () => {
+        useFactory: async () => {
             const worker = await Worker.create({
-                workflowsPath: require.resolve('./../users/temporal/activities'),
+                workflowsPath: require.resolve('./../users/temporal/workflows/example.workflow'),
                 taskQueue: 'exampleQueue',
             })
             worker.run()
