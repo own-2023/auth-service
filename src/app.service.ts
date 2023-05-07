@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Worker } from '@temporalio/worker';
-import * as activities from './users/temporal/activities'
+import * as activities from './users/temporal/activities/activities2'
 
 @Injectable()
 export class AppService {

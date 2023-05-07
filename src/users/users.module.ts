@@ -4,9 +4,10 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { User } from './entities/user.entity';
 import { UserRepository } from './repositories/user.repository';
+import { HttpModule } from '@nestjs/axios/dist';
 
 @Module({
-    imports:[TypeOrmModule.forFeature([User])],
+    imports:[TypeOrmModule.forFeature([User]), HttpModule],
     providers:[UsersService, UserRepository],
     controllers: [UsersController],
     exports: [UsersService]

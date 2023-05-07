@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersWorkerModule } from './users-worker/users-worker.module';
+import { TemporalClientModule } from './temporal-client/temporal-client.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UsersWorkerModule } from './users-worker/users-worker.module';
     UsersModule,
     AuthModule,
     UsersWorkerModule,
+    TemporalClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
