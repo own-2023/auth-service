@@ -5,15 +5,10 @@ import { UsersController } from './users.controller';
 import { User } from './entities/user.entity';
 import { UserRepository } from './repositories/user.repository';
 import { HttpModule, HttpService } from '@nestjs/axios/dist';
-import { TemporalClientModule } from 'src/temporal-client/temporal-client.module';
-import { TemporalClientService } from 'src/temporal-client/temporal-client.service';
-import { temporalClientProvider } from 'src/temporal-client/temporal-client.provider';
-import { UserActivityService } from './temporal/activities/user-activity.service';
-
 @Module({
-    imports:[TypeOrmModule.forFeature([User]), HttpModule, TemporalClientModule],
-    providers:[UsersService, UserRepository, TemporalClientService, ...temporalClientProvider, UserActivityService],
+    imports:[TypeOrmModule.forFeature([User]), HttpModule],
+    providers:[UsersService, UserRepository],
     controllers: [UsersController],
-    exports: [UsersService, UserActivityService]
+    exports: [UsersService]
 })
 export class UsersModule {}
