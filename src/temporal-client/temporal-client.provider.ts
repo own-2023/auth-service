@@ -1,16 +1,13 @@
-import { Connection } from "@temporalio/client";
-import { WorkflowClient } from "@temporalio/client";
+import { Client } from "@temporalio/client";
 
 
-export const clientProvider = [
+
+export const temporalClientProvider = [
     {
         provide: 'TEMPORAL_CLIENT',
         inject: [],
         useFactory: async () => {
-            const connection = await Connection.connect();
-            const client = new WorkflowClient({
-                connection
-            });
+            const client = new Client();
             return client;
         }
     }

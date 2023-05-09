@@ -2,9 +2,9 @@ import { Inject, Injectable, OnApplicationShutdown } from '@nestjs/common';
 import { Worker } from '@temporalio/worker';
 
 @Injectable()
-export class UsersWorkerService implements OnApplicationShutdown {
+export class TemporalWorkerService implements OnApplicationShutdown {
 
-    constructor(@Inject('USER_WORKER') private userWorker: Worker) { }
+    constructor(@Inject('TEMPORAL_WORKER') private userWorker: Worker) { }
 
 
     async close() {
