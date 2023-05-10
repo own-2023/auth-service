@@ -5,8 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
-import { TemporalWorkerModule } from './temporal-worker/temporal-worker.module';
-import { TemporalClientModule } from './temporal-client/temporal-client.module';
 
 @Module({
   imports: [
@@ -23,8 +21,6 @@ import { TemporalClientModule } from './temporal-client/temporal-client.module';
     }),
     UsersModule,
     AuthModule,
-    TemporalWorkerModule,
-    TemporalClientModule,
   ],
   controllers: [AppController],
   providers: [AppService],
