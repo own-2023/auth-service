@@ -8,8 +8,8 @@ export class UsersService {
   constructor(private usersRepository: UserRepository) { }
 
 
-  signUp(user: User) {
-    return '';
+  async signUp(user: User) {
+    await this.usersRepository.save(user);
   }
 
 
