@@ -18,6 +18,6 @@ export class AuthController {
     @HttpCode(204)
     async signUp(@Body() body: User) {
         const token = await this.authService.signUp(body);
-        return {username: body.username, token} ;
+        return { token };
     }
 }

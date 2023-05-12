@@ -10,11 +10,11 @@ export class AuthService {
 
     async signIn(email: string, pass: string) {
         const user = await this.userService.findOneByEmailAndPassword(email, pass);
-        if(user === null || user?.password != pass){
+        if (user === null || user?.password != pass) {
             throw new UnauthorizedException();
         }
-        const token = await this.createTokenFromEmailPassword (user);
-        return token;
+        const token = await this.createTokenFromEmailPassword(user);
+        return { token: token.accesToken, username: user.username };
     }
 
 

@@ -32,7 +32,7 @@ export class UserRepository {
 }
 
   findOneByEmailAndPassword(email: string, password: string) {
-    return this.usersRepository.findOneBy({ email: email, password });
+    return this.usersRepository.findOneBy({ email, password });
   }
 
   async remove(id: number): Promise<void> {
