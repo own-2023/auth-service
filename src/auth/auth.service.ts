@@ -13,13 +13,13 @@ export class AuthService {
         if(user === null || user?.password != pass){
             throw new UnauthorizedException();
         }
-        const token = await this.createTokenFromUsernamePassword (user);
+        const token = await this.createTokenFromEmailPassword (user);
         return token;
     }
 
 
-    async createTokenFromUsernamePassword(user: User) {
-        const payload = { username: user.username, sub: user.user_id };
+    async createTokenFromEmailPassword(user: User) {
+        const payload = { email: user.email, sub: user.user_id };
         return {
             accesToken: await this.jwtService.signAsync(payload),
         };
@@ -27,6 +27,6 @@ export class AuthService {
 
     async signUp(user: User) {
         await this.userService.signUp(user);
-        return await this.createTokenFromUsernamePassword(user);
+        return await this.createTokenFromEmailPassword(user);
     }
 }
