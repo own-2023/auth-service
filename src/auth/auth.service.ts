@@ -8,8 +8,8 @@ export class AuthService {
     constructor(private userService: UsersService,
         private jwtService: JwtService) { }
 
-    async signIn(username: string, pass: string) {
-        const user = await this.userService.findOneByUsernameAndPassword(username, pass);
+    async signIn(email: string, pass: string) {
+        const user = await this.userService.findOneByEmailAndPassword(email, pass);
         if(user === null || user?.password != pass){
             throw new UnauthorizedException();
         }

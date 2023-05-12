@@ -13,8 +13,8 @@ export class UsersService {
   }
 
 
-  async findOneByUsernameAndPassword(username: string, password: string) {
-    return await this.usersRepository.findOneByUsernameAndPassword(username, password)
+  async findOneByEmailAndPassword(email: string, password: string) {
+    return await this.usersRepository.findOneByEmailAndPassword(email, password)
   }
 
 }

@@ -1,7 +1,7 @@
-import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { BadRequestException, Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './../entities/user.entity';
-import { Repository } from 'typeorm';
+import { QueryFailedError, Repository } from 'typeorm';
 
 @Injectable()
 export class UserRepository {
@@ -10,7 +10,6 @@ export class UserRepository {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
   ) { }
-
 
   findAll(): Promise<User[]> {
     return this.usersRepository.find();
@@ -21,20 +20,23 @@ export class UserRepository {
   }
 
   async save(user: User) {
-    try { await this.usersRepository.save([user]) }
+    try {
+      await this.usersRepository.save([user])
+    }
     catch (error) {
-      throw InternalServerErrorException
+      console.log(error)
+      if (error instanceof QueryFailedError) {
+      throw new BadRequestException({error: 'Username already taken'});
     }
   }
+}
 
-
-  findOneByUsernameAndPassword(username: string, password: string) {
-    return this.usersRepository.findOneBy({ username, password });
+  findOneByEmailAndPassword(email: string, password: string) {
+    return this.usersRepository.findOneBy({ email: email, password });
   }
 
   async remove(id: number): Promise<void> {
     await this.usersRepository.delete(id);
   }
-
 
 }
