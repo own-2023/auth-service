@@ -6,9 +6,8 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 })
 export class User {
 
-
     @PrimaryGeneratedColumn('uuid')
-    user_id: number;
+    user_id: string;
 
     @Column({ unique: true })
     username: string;

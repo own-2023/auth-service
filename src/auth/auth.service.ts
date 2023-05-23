@@ -19,7 +19,7 @@ export class AuthService {
 
 
     async createTokenFromEmailPassword(user: User) {
-        const payload = { email: user.email, sub: user.user_id };
+        const payload = { email: user.email, user_id: user.user_id };
         return {
             accesToken: await this.jwtService.signAsync(payload),
         };
