@@ -10,7 +10,7 @@ import { AuthModule } from './auth/auth.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'host.docker.internal',
+      host: 'localhost', // mac: localhost, windows: host.docker.internal
       port: 3306,
       username: 'user',
       password: 'root',
