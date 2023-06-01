@@ -8,8 +8,13 @@ export class UsersService {
   constructor(private usersRepository: UserRepository) { }
 
 
-  async signUp(user: User) {
+  async signUp(username: string, password: string, email: string) {
+    const user = new User();
+    user.username = username;
+    user.password = password;
+    user.email = email
     await this.usersRepository.save(user);
+    return user;
   }
 
 

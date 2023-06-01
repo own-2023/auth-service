@@ -15,9 +15,8 @@ export class AuthController {
     }
 
     @Post('sign-up')
-    @HttpCode(204)
+    @HttpCode(201)
     async signUp(@Body() body: User) {
-        const token = await this.authService.signUp(body);
-        return { token };
+        return await this.authService.signUp(body);
     }
 }
