@@ -1,7 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
 import { JwtService } from '@nestjs/jwt';
-import { User } from 'src/users/entities/user.entity';
 import axios from 'axios';
 import { jwtConstants } from './constants';
 import { SignUpDto } from './dtos/signUp.dto';
@@ -16,7 +15,7 @@ export class AuthService {
         if (user === null || user?.password != pass) {
             throw new UnauthorizedException();
         }
-        const token = await this.createTokenFromUsernameAndId(user.username, user.user_id);
+        const token = await this.createTokenFromUsernameAndId(user.user_id, user.username);
         return { token: token.accessToken, username: user.username };
     }
 

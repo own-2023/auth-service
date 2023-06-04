@@ -17,6 +17,11 @@ export class UsersService {
     return user;
   }
 
+  async getUsernameByUserId(userId: string){
+    const user = await this.usersRepository.findOneByid(userId);
+    return user.username;
+  }
+
 
   async findOneByEmailAndPassword(email: string, password: string) {
     return await this.usersRepository.findOneByEmailAndPassword(email, password)
