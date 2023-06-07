@@ -10,9 +10,8 @@ export class UsersController {
 
     
 
-    @UseGuards(AuthGuard)
     @Get('username')
-    async getProfile(@Body() getUsernameDto: GetUsernameDto){
+    async getUsernameById(@Body() getUsernameDto: GetUsernameDto){
         const username = await this.userService.getUsernameByUserId(getUsernameDto.user_id);
         return {username};
     }
