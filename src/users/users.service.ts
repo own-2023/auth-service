@@ -17,6 +17,10 @@ export class UsersService {
     return user;
   }
 
+  async getUserIdByUsername(username: string){
+    return await this.usersRepository.findUserIdByUsername(username);
+  }
+
   async getUsernameByUserId(userId: string){
     const user = await this.usersRepository.findOneByid(userId);
     return user.username;

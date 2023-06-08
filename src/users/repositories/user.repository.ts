@@ -31,6 +31,16 @@ export class UserRepository {
   }
 }
 
+async findUserIdByUsername(username: string){
+  try{
+    const userId = await this.usersRepository.findOne({where:{username}});
+    return userId;
+  }
+  catch(err){
+    console.log(err);
+  }
+}
+
   findOneByEmailAndPassword(email: string, password: string) {
     return this.usersRepository.findOneBy({ email, password });
   }
