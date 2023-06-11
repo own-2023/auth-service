@@ -16,7 +16,7 @@ export class AuthService {
             throw new UnauthorizedException();
         }
         const token = await this.createTokenFromUsernameAndId(user.user_id, user.username);
-        return { token: token.accessToken, username: user.username };
+        return { token: token.accessToken, username: user.username, userId: user.user_id };
     }
 
 
@@ -30,7 +30,12 @@ export class AuthService {
     async signUp(signUpDto: SignUpDto) {
         const user = await this.userService.signUp(signUpDto.username, signUpDto.password, signUpDto.email);
         const token = await this.createTokenFromUsernameAndId(user.user_id, user.username);
-        const response = await axios.post(`http://127.0.0.1:4000/ethereum/create`, null, { headers: { Authorization: `Bearer ${token.accessToken}` } })
-        return { token: token.accessToken, username: user.username };
+        try {
+            await axios.post(`http://127.0.0.1:4000/ethereum/create`, null, { headers: { Authorization: `Bearer ${token.accessToken}` } })
+        }
+        catch (err) {
+            console.log(err);
+        }
+        return { token: token.accessToken, username: user.username, userId: user.user_id };
     }
 }
