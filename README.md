@@ -3,7 +3,7 @@
 
 ## Description
 
-
+auth-service is a Nest.js application designed to handle authentication. Leveraging the JWT (JSON Web Tokens) for secure authentication
 
 ## Installation
 
